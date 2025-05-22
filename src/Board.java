@@ -1,5 +1,5 @@
 public class Board {
-    private final int length = 20;
+    private final int length = 5;
     private final int width = length;
     private final char[][] grid = new char[length][width];
 
@@ -13,11 +13,11 @@ public class Board {
 
 
     public void AddInGrid(int x, int y, char c) {
-        grid[x][y] = c;
+        grid[y][x] = c;
     }
 
     public void removeFromGrid(int x, int y) {
-        grid[x][y] = ' ';
+        grid[y][x] = ' ';
     }
 
     public static void limparConsole(){
@@ -34,7 +34,7 @@ public class Board {
         }
     }
 
-    public static void showBeatifulBoard(char[][] grid, String Cor_Conteudo){
+    public static void showBeatifulBoard(char[][] grid){
         limparConsole();
         final String COR_BORDA = "\033[36m";
         final String RESET = "\033[0m";
@@ -55,7 +55,15 @@ public class Board {
             System.out.println();
             System.out.print(COR_BORDA + "│ ");
             for (int j = 0; j < colums; j++) {
-                System.out.print(Cor_Conteudo + grid[j][i] + RESET);
+                String Cor_Conteudo = "";
+                if(grid[i][j] == Human.getHumanChar()) {
+                    Cor_Conteudo = Human.getColor();
+                }
+                else{
+                    Cor_Conteudo = Zombie.getColor();
+                }
+
+                System.out.print(Cor_Conteudo + grid[i][j] + RESET);
                 System.out.print(COR_BORDA + " │ ");
 
             }

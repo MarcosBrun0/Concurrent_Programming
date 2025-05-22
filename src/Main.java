@@ -1,21 +1,25 @@
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Board board = new Board();
         char[][] grid = board.getGrid();
+        int i,j;
 
 
-        //Add Zombies in the bottom of the grid
-//        for (int i = grid.length -1 ; i > grid.length - 2 ; i--) {
-//            for (int j = 0; j < grid[0].length; j++) {
-//                Zombie zombie = new Zombie(board,i,j);
-//                board.AddInGrid(i,j,'Ø');
-//                zombie.run();
-//            }
-//        }
+for(i = 0; i< grid.length; i++){
+        //add zombies
 
-        Zombie zombie = new Zombie(board,5,9);
-        zombie.run();
+            Zombie zombie = new Zombie(board,board.getLength()-1,i);
+            zombie.start();
+            Human human = new Human(board,0,i);
+            human.start();
 
+
+}
+
+while (true){
+    Board.showBeatifulBoard(grid);
+    Thread.sleep(500);
+}
 
 
 
