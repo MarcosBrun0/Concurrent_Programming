@@ -1,7 +1,7 @@
 public class Board {
-    private final int length = 5;
-    private final int width = length;
-    private final char[][] grid = new char[length][width];
+    private static final int length = 50;
+    private static final int width = length;
+    private static final char[][] grid = new char[length][width];
 
     public Board() {
         for(int i = 0; i < length; i++) {
@@ -24,7 +24,7 @@ public class Board {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    public void showBoard(){
+    public static void showBoard(){
         limparConsole();
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
@@ -36,8 +36,11 @@ public class Board {
 
     public static void showBeatifulBoard(char[][] grid){
         limparConsole();
-        final String COR_BORDA = "\033[36m";
+        //final String COR_BORDA = "\033[36m";
+        //final String COR_BORDA = "";
+        final String COR_BORDA = "\033[30m";
         final String RESET = "\033[0m";
+
 
         int rows = grid.length;
         int colums = grid[0].length;

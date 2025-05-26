@@ -7,6 +7,7 @@ public class Human extends Thread{
     private int x,y;
     private static String color = "\033[34m";
     private Boolean running = true;
+    private final int sleeptimeMS = 50;
     private Semaphore lock = new Semaphore(1);
 
     public static String getColor() {
@@ -28,8 +29,9 @@ public class Human extends Thread{
         while (running) {
             move();
             checarMordida();
+            checkwin();
             try {
-                Thread.sleep(2000);
+                Thread.sleep(sleeptimeMS);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -66,25 +68,33 @@ public class Human extends Thread{
     }
 
 
-    private void checarMordida(){
-        char[][] grid = board.getGrid();
-        //
-        try {
-            lock.acquire();
-
-            if (grid[y][x + 1] == Zombie.getZombiechar()) {
-                board.removeFromGrid(this.x, this.y);
-                System.out.println("converteu");
-                Zombie newZombie = new Zombie(board, x , y);
-                newZombie.start();
-                running = false;
-            }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } finally {
-            lock.release();
+    public void checkwin(){
+        if (this.x == board.getLength()-1){
+            System.out.println("HUMAN WINS!!!");
+            System.exit(0);
         }
+    }
 
+    private void checarMordida(){
+
+        //
+        if(x < board.getLength()-1) {
+            try {
+                lock.acquire();
+                char[][] grid = board.getGrid();
+                if (grid[y][x + 1] == Zombie.getZombiechar()) {
+                    board.removeFromGrid(this.x, this.y);
+                    System.out.println("[+1 zombie]");
+                    Zombie newZombie = new Zombie(board, x, y);
+                    newZombie.start();
+                    running = false;
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } finally {
+                lock.release();
+            }
+        }
 
 
     }
