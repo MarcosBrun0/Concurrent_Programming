@@ -4,7 +4,7 @@ public class Main {
         char[][] grid = board.getGrid();
         int i,j;
 
-for(i = 0; i< grid.length; i++){    
+for(i = 0; i< grid.length; i++){
         //add zombies
 
             Zombie zombie = new Zombie(board,board.getLength()-1,i);
@@ -17,9 +17,9 @@ for(i = 0; i< grid.length; i++){
 }
 
 while (true){
-    //Board.showBeatifulBoard(grid);
-    Board.showBoard();
-    Thread.sleep(50);
+    Board.showBeatifulBoard(grid);
+    //Board.showBoard();
+    Thread.sleep(200);
 }
 
 

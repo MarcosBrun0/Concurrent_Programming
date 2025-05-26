@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 public class Zombie extends Thread{
     private Board board;
     private int x,y;
-    private final int sleeptimeMS = 50;
+    private final int sleeptimeMS = 200;
 
 
     private static char zombiechar = 'Ø';

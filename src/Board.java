@@ -1,5 +1,5 @@
 public class Board {
-    private static final int length = 50;
+    private static final int length = 15;
     private static final int width = length;
     private static final char[][] grid = new char[length][width];
 
@@ -36,8 +36,11 @@ public class Board {
 
     public static void showBeatifulBoard(char[][] grid){
         limparConsole();
+        //azul
         //final String COR_BORDA = "\033[36m";
+        //branco
         //final String COR_BORDA = "";
+        //preto
         final String COR_BORDA = "\033[30m";
         final String RESET = "\033[0m";
 
@@ -101,4 +104,6 @@ public class Board {
     public int getLength() {
         return length;
     }
+
+
 }

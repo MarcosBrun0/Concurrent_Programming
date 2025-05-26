@@ -7,7 +7,7 @@ public class Human extends Thread{
     private int x,y;
     private static String color = "\033[34m";
     private Boolean running = true;
-    private final int sleeptimeMS = 50;
+    private final int sleeptimeMS = 200;
     private Semaphore lock = new Semaphore(1);
 
     public static String getColor() {
@@ -84,7 +84,7 @@ public class Human extends Thread{
                 char[][] grid = board.getGrid();
                 if (grid[y][x + 1] == Zombie.getZombiechar()) {
                     board.removeFromGrid(this.x, this.y);
-                    System.out.println("[+1 zombie]");
+                    //System.out.println("[+1 zombie]");
                     Zombie newZombie = new Zombie(board, x, y);
                     newZombie.start();
                     running = false;
